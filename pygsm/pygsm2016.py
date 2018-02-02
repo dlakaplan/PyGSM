@@ -5,7 +5,6 @@ from scipy.interpolate import interp1d, pchip
 import h5py
 from astropy import units
 import healpy as hp
-import pylab as plt
 import ephem
 from datetime import datetime
 
@@ -197,6 +196,7 @@ class GlobalSkyModel2016(object):
             Take the log of the data before plotting. Defaults to False.
 
         """
+        import pylab as plt
 
         if self.generated_map_data is None:
             raise RuntimeError("No GSM map has been generated yet. Run generate() first.")
@@ -301,6 +301,8 @@ class GSMObserver2016(ephem.Observer):
         logged: bool
             Default False, return the log2 image
         """
+        import pylab as plt
+    
         sky = self.observed_sky
         if logged:
             sky = np.log2(sky)
@@ -314,6 +316,8 @@ class GSMObserver2016(ephem.Observer):
 
     def view_observed_gsm(self, logged=False, show=False, **kwargs):
         """ View the GSM (Mollweide), with below-horizon area masked. """
+        import pylab as plt
+
         sky = self.observed_sky
         if logged:
             sky = np.log2(sky)
